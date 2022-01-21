@@ -1,0 +1,34 @@
+$size-maps: 10 20 30;
+
+@each $size in $size-maps {
+  .pr-#{$size} {
+    padding-right: #{$size}px;
+  }
+  .mr-#{$size} {
+    margin-right: #{$size}px;
+  }
+  .pl-#{$size} {
+    padding-left: #{$size}px;
+  }
+  .ml-#{$size} {
+    margin-left: #{$size}px;
+  }
+  .pt-#{$size} {
+    padding-top: #{$size}px;
+  }
+  .mt-#{$size} {
+    margin-top: #{$size}px;
+  }
+  .pb-#{$size} {
+    padding-bottom: #{$size}px;
+  }
+  .mb-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+  .p-#{$size} {
+    padding: #{$size}px;
+  }
+  .m-#{$size} {
+    margin: #{$size}px;
+  }
+}

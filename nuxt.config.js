@@ -1,6 +1,11 @@
+import path from 'path'
 import i18n from './locales'
 
 const { BASE_URL } = process.env
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -60,6 +65,51 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    parallel: true,
+    optimization: {
+      minimize: true,
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          libs: {
+            name: 'chunk-libs', // 抽离后的名字
+            test: /[\\/]node_modules[\\/]/, // 匹配对应目录
+            priority: 10, // 优先级，数字越大优先级越高，默认为0
+            chunks: 'initial', // 打包规则，通常用initial，标识非动态模块打进该vendor，动态模块优化打包
+          },
+          elementUI: {
+            name: 'chunk-elementUI',
+            priority: 20,
+            test: /[\\/]node_modules[\\/]_?element-ui(.*)/,
+          },
+          commons: {
+            name: 'chunk-commons',
+            test: resolve('components'),
+            minChunks: 3, // 模块被引用3次以上的才抽离
+            priority: 5,
+            reuseExistingChunk: true, // 重复使用已经打包过的模块。即，如果之前已经打包过了，则使用之前的模块，而不会进行再次打包
+          },
+          echarts: {
+            name: 'chunk-echarts',
+            test: /[\\/]node_modules[\\/](vue-)?echarts[\\/]/,
+            chunks: 'all', // 匹配文件，无论是否动态模块，都打包进该vendor
+            priority: 4,
+            reuseExistingChunk: true,
+          },
+        },
+      },
+    },
+    terser: {
+      parallel: true,
+      cache: false,
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
+    },
+
     transpile: [/^element-ui/],
     extractCSS: true,
   },

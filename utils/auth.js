@@ -1,14 +1,15 @@
-import { getStorage, setStorage, removeStorage } from './store'
-const tokenKey = 'token'
+const Cookie = require('js-cookie')
+
+const TokenKey = 'token'
 
 export function getToken() {
-  return getStorage(tokenKey)
+  return Cookie.get(TokenKey)
 }
 
-export function setToken(data) {
-  return setStorage(tokenKey, data)
+export function setToken(token) {
+  return Cookie.set(TokenKey, token)
 }
 
 export function removeToken() {
-  return removeStorage(tokenKey)
+  return Cookie.remove(TokenKey)
 }

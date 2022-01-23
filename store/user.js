@@ -1,5 +1,7 @@
+import { getToken } from '@/utils/auth'
+
 export const state = () => ({
-  token: null,
+  token: getToken(),
   info: null,
 })
 

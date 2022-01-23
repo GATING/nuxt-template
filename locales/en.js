@@ -5,4 +5,7 @@ export default {
   about: {
     title: 'About',
   },
+  login: {
+    title: 'Login',
+  },
 }

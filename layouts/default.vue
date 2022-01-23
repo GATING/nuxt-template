@@ -12,6 +12,22 @@
         >
           {{ $t('about.title') }}
         </nuxt-Link>
+
+        <nuxt-Link
+          exact
+          :to="localePath('login')"
+          exact-active-class="text-danger"
+        >
+          {{ $t('login.title') }}
+        </nuxt-Link>
+
+        <nuxt-Link
+          exact
+          :to="localePath('secret')"
+          exact-active-class="text-danger"
+        >
+          没token访问不了这个页面
+        </nuxt-Link>
       </nav>
 
       当前语言:{{ $i18n.locale }}

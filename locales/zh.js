@@ -5,4 +5,7 @@ export default {
   about: {
     title: '关于我们',
   },
+  login: {
+    title: '登录',
+  },
 }

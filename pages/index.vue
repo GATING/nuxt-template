@@ -15,8 +15,10 @@ export default {
   head() {
     return { title: this.$t('home.title') }
   },
-  mounted() {
+  created() {
+    console.log(this.$config)
     console.log(this.$userApi)
+    console.log(process.env)
   },
 }
 </script>
